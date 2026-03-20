@@ -9,8 +9,8 @@ directories:
 files:
   - electron/**/*
   - package.json
-  - "!node_modules/**/*"
-  - "!.next/**/*"
+  - "!.env"
+  - "!node_modules/.cache/**/*"
   - "!src/**/*"
   - "!prisma/**/*"
   - "!download/**/*"
@@ -26,11 +26,6 @@ extraResources:
     to: "server/public"
     filter:
       - "**/*"
-  - from: "db"
-    to: "db"
-    filter:
-      - "**/*.db"
-      - "**/*.db-journal"
 
 win:
   icon: public/icon.png
@@ -52,8 +47,6 @@ nsis:
   createStartMenuShortcut: true
   shortcutName: 爱的教育
   license: LICENSE
-  deleteAppDataOnUninstall: false
-  runAfterFinish: true
 
 portable:
   artifactName: ${productName}-${version}-Portable.exe

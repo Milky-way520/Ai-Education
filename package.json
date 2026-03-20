@@ -34,7 +34,6 @@
       "electron/**/*",
       ".next/standalone/**/*",
       "public/**/*",
-      "db/**/*",
       "node_modules/**/*",
       "package.json"
     ],
@@ -42,11 +41,6 @@
       {
         "from": ".next/standalone",
         "to": "server",
-        "filter": ["**/*"]
-      },
-      {
-        "from": "db",
-        "to": "db",
         "filter": ["**/*"]
       }
     ],
@@ -61,19 +55,15 @@
           "arch": ["x64"]
         }
       ],
-      "icon": "electron/build/icon.ico",
+      "icon": "public/icon.png",
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "electron/build/icon.ico",
-      "uninstallerIcon": "electron/build/icon.ico",
-      "installerHeaderIcon": "electron/build/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "爱的教育",
-      "include": "electron/build/installer.nsh"
+      "shortcutName": "爱的教育"
     },
     "portable": {
       "artifactName": "${productName}-${version}-Portable.${ext}"

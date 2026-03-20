@@ -55,7 +55,7 @@ if %errorlevel% neq 0 (
 
 echo.
 echo [5/6] 初始化数据库...
-call npx prisma db push
+call npx prisma db push --skip-generate
 if %errorlevel% neq 0 (
     echo [警告] 数据库初始化可能有问题，继续尝试打包...
 )
@@ -63,7 +63,7 @@ if %errorlevel% neq 0 (
 echo.
 echo [6/6] 打包Windows应用...
 set CSC_IDENTITY_AUTO_DISCOVERY=false
-call npx electron-builder --win --x64 --config.npmRebuild=false
+call npx electron-builder --win --x64 --config electron-builder.yml
 if %errorlevel% neq 0 (
     echo [错误] 打包失败
     pause
@@ -75,8 +75,7 @@ echo ========================================
 echo   打包完成！
 echo ========================================
 echo.
-echo 安装包位置: release\爱的教育 Setup 1.0.0.exe
-echo 便携版位置: release\爱的教育-1.0.0-Portable.exe
+dir release\*.exe
 echo.
 
 :: 打开输出目录
