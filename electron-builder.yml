@@ -2,6 +2,8 @@ appId: com.ai-education.app
 productName: 爱的教育
 copyright: Copyright © 2024 爱的教育团队
 
+npmRebuild: false
+
 directories:
   output: release
   buildResources: electron/build
