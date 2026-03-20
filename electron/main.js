@@ -14,13 +14,17 @@ const SERVER_PORT = 3000;
 
 // 创建主窗口
 function createWindow() {
+  // 图标路径（如果存在）
+  const iconPath = path.join(__dirname, '../public/icon-new.png');
+  const iconOptions = fs.existsSync(iconPath) ? { icon: iconPath } : {};
+
   mainWindow = new BrowserWindow({
     width: 1400,
     height: 900,
     minWidth: 1000,
     minHeight: 700,
     title: '爱的教育 - AI智能学习助手',
-    icon: path.join(__dirname, '../public/icon.png'),
+    ...iconOptions,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,

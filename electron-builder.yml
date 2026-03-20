@@ -30,7 +30,6 @@ extraResources:
       - "**/*"
 
 win:
-  icon: public/icon.png
   target:
     - target: nsis
       arch:
@@ -42,20 +41,15 @@ win:
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
-  installerIcon: public/icon.png
-  uninstallerIcon: public/icon.png
-  installerHeaderIcon: public/icon.png
   createDesktopShortcut: true
   createStartMenuShortcut: true
-  shortcutName: 爱的教育
-  license: LICENSE
+  shortcutName: AI Education
 
 portable:
   artifactName: ${productName}-${version}-Portable.exe
 
 # Mac 配置（预留）
 mac:
-  icon: public/icon.png
   category: public.app-category.education
   target:
     - target: dmg
@@ -65,7 +59,6 @@ mac:
 
 # Linux 配置（预留）
 linux:
-  icon: public/icon.png
   category: Education
   target:
     - target: AppImage
