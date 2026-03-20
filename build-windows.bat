@@ -21,7 +21,7 @@ if not exist "package.json" (
     exit /b 1
 )
 
-echo [1/5] 安装依赖...
+echo [1/6] 安装依赖...
 call npm install
 if %errorlevel% neq 0 (
     echo [错误] 依赖安装失败
@@ -30,7 +30,13 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [2/5] 生成Prisma客户端...
+echo [2/6] 创建环境变量文件...
+if not exist ".env" (
+    echo DATABASE_URL="file:./dev.db" > .env
+)
+
+echo.
+echo [3/6] 生成Prisma客户端...
 call npx prisma generate
 if %errorlevel% neq 0 (
     echo [错误] Prisma生成失败
@@ -39,7 +45,7 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [3/5] 构建Next.js项目...
+echo [4/6] 构建Next.js项目...
 call npm run build
 if %errorlevel% neq 0 (
     echo [错误] 构建失败
@@ -48,15 +54,16 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-echo [4/5] 初始化数据库...
+echo [5/6] 初始化数据库...
 call npx prisma db push
 if %errorlevel% neq 0 (
     echo [警告] 数据库初始化可能有问题，继续尝试打包...
 )
 
 echo.
-echo [5/5] 打包Windows应用...
-call npx electron-builder --win --x64
+echo [6/6] 打包Windows应用...
+set CSC_IDENTITY_AUTO_DISCOVERY=false
+call npx electron-builder --win --x64 --config.npmRebuild=false
 if %errorlevel% neq 0 (
     echo [错误] 打包失败
     pause
